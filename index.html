@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愿望星球 - 你的心愿宇宙</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 星空背景动画 -->
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <!-- 加载动画 -->
+    <div id="loading" class="loading">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>正在连接宇宙信号...</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- 头部标题 -->
+        <header>
+            <h1 class="main-title">愿望星球</h1>
+            <p class="subtitle">在寂静的夜空下，与宇宙对话</p>
+        </header>
+
+        <!-- 导航标签 -->
+        <nav class="tab-nav">
+            <button class="tab-button active" data-tab="wish-form">许愿</button>
+            <button class="tab-button" data-tab="wish-list">愿望列表</button>
+            <button class="tab-button" data-tab="calendar">能量日历</button>
+        </nav>
+
+        <!-- 主要内容区域 -->
+        <main class="tab-content">
+            <!-- 许愿表单 -->
+            <section id="wish-form" class="tab-panel active">
+                <div class="form-container">
+                    <h2>种下愿望的种子</h2>
+                    <form id="wishForm">
+                        <div class="form-group">
+                            <label for="challenge">困境描述</label>
+                            <textarea id="challenge" name="challenge" placeholder="描述你当前遇到的挑战..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="difficulty">困难程度 <span id="difficultyValue">50</span>/100</label>
+                            <input type="range" id="difficulty" name="difficulty" min="1" max="100" value="50" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="goal">期望成果</label>
+                            <textarea id="goal" name="goal" placeholder="写下你希望达成的目标..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">向宇宙传讯</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 愿望列表 -->
+            <section id="wish-list" class="tab-panel">
+                <h2>愿望种子</h2>
+                <div id="wishList" class="wish-list">
+                    <!-- 愿望卡片将通过JavaScript动态生成 -->
+                    <div class="empty-state">
+                        <p>还没有种下任何愿望种子</p>
+                        <p>点击"许愿"标签开始你的宇宙对话</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 日历视图 -->
+            <section id="calendar" class="tab-panel">
+                <h2>能量日历</h2>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button id="prevMonth">&lt;</button>
+                        <h3 id="currentMonthYear">2025年9月</h3>
+                        <button id="nextMonth">&gt;</button>
+                    </div>
+                    <div class="calendar">
+                        <div class="weekdays">
+                            <div>日</div>
+                            <div>一</div>
+                            <div>二</div>
+                            <div>三</div>
+                            <div>四</div>
+                            <div>五</div>
+                            <div>六</div>
+                        </div>
+                        <div id="calendarDays" class="days">
+                            <!-- 日历日期将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 日期详情模态框 -->
+                <div id="dateDetailModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3 id="modalDate">2025年9月7日</h3>
+                        <div id="modalRecords">
+                            <!-- 能量记录将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 注入能量模态框 -->
+    <div id="energyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>注入能量</h3>
+            <form id="energyForm">
+                <input type="hidden" id="wishId" name="wishId">
+                <div class="form-group">
+                    <label for="energyContent">记录你的努力</label>
+                    <textarea id="energyContent" name="energyContent" placeholder="描述你为达成愿望所做的努力..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">注入能量</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 还愿确认模态框 -->
+    <div id="fulfillModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>还愿确认</h3>
+            <p>恭喜你达成了心愿！</p>
+            <p>请写下你的感悟：</p>
+            <form id="fulfillForm">
+                <input type="hidden" id="fulfillWishId" name="fulfillWishId">
+                <div class="form-group">
+                    <textarea id="fulfillContent" name="fulfillContent" placeholder="记录你实现愿望的感受和收获..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn golden">确认还愿</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
